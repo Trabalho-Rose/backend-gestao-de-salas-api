@@ -1,0 +1,43 @@
+package br.com.cesurgmarau.SistemaRose.core.usecase;
+
+import br.com.cesurgmarau.SistemaRose.core.domain.contract.SalaRepository;
+import br.com.cesurgmarau.SistemaRose.core.domain.contract.SalaUseCase;
+import br.com.cesurgmarau.SistemaRose.core.domain.entity.Sala;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class SalaUseCaseImpl implements SalaUseCase {
+
+    @Autowired
+    private SalaRepository salaRepository;
+    private Sala sala;
+
+    @Override
+    public List<Sala> listar() {
+        return salaRepository.listar();
+    }
+
+    @Override
+    public Sala listarPorId (int id) {
+        return salaRepository.listarPorId(id);
+    }
+
+    @Override
+    public void adicionarSala (Sala sala) {
+        salaRepository.adicionarSala(sala);
+    }
+
+    @Override
+    public String deletarSala (int id) {
+        return salaRepository.deletarSala(id);
+    }
+
+    @Override
+    public String atualizarSala (int id, Sala sala) {
+        return salaRepository.atualizarSala(id, sala);
+    }
+
+}
