@@ -4,6 +4,7 @@ import br.com.cesurgmarau.SistemaRose.core.domain.contract.DisciplinaRepository;
 import br.com.cesurgmarau.SistemaRose.core.domain.contract.DisciplinaUseCase;
 import br.com.cesurgmarau.SistemaRose.core.domain.entity.Disciplina;
 import br.com.cesurgmarau.SistemaRose.core.domain.entity.Professor;
+import br.com.cesurgmarau.SistemaRose.core.domain.entity.Relatorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +40,11 @@ public class DisciplinaUseCaseImpl implements DisciplinaUseCase {
     @Override
     public String atualizarDisciplina (int id, Disciplina disciplina) {
         return disciplinaRepository.atualizarDisciplina(id, disciplina);
+    }
+
+    @Override
+    public List<Relatorio> relatorioDiario () {
+        return disciplinaRepository.relatorioDiario();
     }
 
 
