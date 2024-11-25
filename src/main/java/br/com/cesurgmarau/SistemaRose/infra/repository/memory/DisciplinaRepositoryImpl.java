@@ -24,13 +24,14 @@ public class DisciplinaRepositoryImpl implements DisciplinaRepository {
         //INSERT INTO tabela VALUES ...
         //Named Parameters
         var query = """
-                INSERT INTO disciplina (nome, cargahoraria, professor_id)
-                VALUES (:nome, :cargahoraria, :professor_id)
+                INSERT INTO disciplina (nome, cargahoraria, professor_id, curso_id)
+                VALUES (:nome, :cargahoraria, :professor_id, :curso_id)
                 """;
         entityManager.createNativeQuery(query, Disciplina.class)
                 .setParameter("nome", disciplina.getNome())
                 .setParameter("cargahoraria", disciplina.getCargaHoraria())
                 .setParameter("professor_id", disciplina.getProfessor_id())
+                .setParameter("curso_id", disciplina.getCurso_id())
                 .executeUpdate();
     }
 

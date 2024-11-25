@@ -81,29 +81,29 @@ public class SalaRepositoryImpl implements SalaRepository {
     public String vincularTurma(int salaID, int turmaID) {
 
         var query1 = """
-            SELECT s.capacidade FROM sala s WHERE s.id = :id
-            """;
+        SELECT s.capacidade FROM sala s WHERE s.id = :id
+        """;
         int capacidade = (int) entityManager.createNativeQuery(query1)
                 .setParameter("id", salaID)
                 .getSingleResult();
 
         var query2 = """
-            SELECT t.qtdalunos FROM turma t WHERE t.id = :id
-            """;
+        SELECT t.qtdalunos FROM turma t WHERE t.id = :id
+        """;
         int qtdAlunos = (int) entityManager.createNativeQuery(query2)
                 .setParameter("id", turmaID)
                 .getSingleResult();
 
         var query4 = """
-            SELECT ts.turma_id FROM turmas_salas ts WHERE ts.turma_id = :turma_id
-            """;
+        SELECT ts.turma_id FROM turmas_salas ts WHERE ts.turma_id = :turma_id
+        """;
         List<?> turmaResult = entityManager.createNativeQuery(query4)
                 .setParameter("turma_id", turmaID)
                 .getResultList();
 
         var query5 = """
-            SELECT ts.sala_id FROM turmas_salas ts WHERE ts.sala_id = :sala_id
-            """;
+        SELECT ts.sala_id FROM turmas_salas ts WHERE ts.sala_id = :sala_id
+        """;
         List<?> salaResult = entityManager.createNativeQuery(query5)
                 .setParameter("sala_id", salaID)
                 .getResultList();
@@ -111,23 +111,45 @@ public class SalaRepositoryImpl implements SalaRepository {
         if (turmaResult.isEmpty() && salaResult.isEmpty()) {
             if (capacidade >= qtdAlunos) {
                 var query3 = """
-                    INSERT INTO turmas_salas (turma_id, sala_id) 
-                    VALUES (:turma_id, :sala_id);
-                    """;
+                INSERT INTO turmas_salas (turma_id, sala_id) 
+                VALUES (:turma_id, :sala_id);
+                """;
                 entityManager.createNativeQuery(query3)
                         .setParameter("turma_id", turmaID)
                         .setParameter("sala_id", salaID)
                         .executeUpdate();
+
+                entityManager.flush();
+                entityManager.clear();
 
                 return "Sala reservada com sucesso!";
             } else {
                 return "Capacidade da sala inferior à quantidade de alunos da turma!";
             }
         } else {
-            return "Sala ou Turma já vinculada!";
+            var query6 = """
+            SELECT t.nome AS turma FROM turmas_salas ts
+            INNER JOIN turma t ON ts.turma_id = t.id
+            INNER JOIN sala s ON ts.sala_id = s.id
+            WHERE s.id = :sala_id
+        """;
+            String turma = (String) entityManager.createNativeQuery(query6)
+                    .setParameter("sala_id", salaID)
+                    .getSingleResult();
+
+            var query7 = """
+            SELECT s.nome AS sala FROM turmas_salas ts
+            INNER JOIN sala s ON ts.sala_id = s.id
+            INNER JOIN turma t ON ts.turma_id = t.id
+            WHERE t.id = :turma_id
+        """;
+            String sala = (String) entityManager.createNativeQuery(query7)
+                    .setParameter("turma_id", turmaID)
+                    .getSingleResult();
+
+            return "Sala ou Turma já vinculada! \n " + "A turma " + turma + " já está na sala " + sala;
         }
     }
-
 
     @Override
     @Transactional
@@ -167,5 +189,4 @@ public class SalaRepositoryImpl implements SalaRepository {
         return entityManager.createNativeQuery(query, VinculoSalasETurmas.class)
                 .getResultList();
     }
-
 }

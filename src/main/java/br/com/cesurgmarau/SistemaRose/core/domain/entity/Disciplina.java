@@ -20,6 +20,17 @@ public class Disciplina {
     @Column (name = "professor_id")
     private int professor_id;
 
+    @Column (name = "curso_id")
+    private int curso_id;
+
+    public int getCurso_id() {
+        return curso_id;
+    }
+
+    public void setCurso_id(int curso_id) {
+        this.curso_id = curso_id;
+    }
+
     public int getId() {
         return id;
     }
