@@ -34,7 +34,7 @@ public class SemestreRepositoryImpl implements SemestreRepository {
     @Override
     public String atualizarSemestre(int id, Semestre semestre) {
         var query = """
-                UPDATE FROM semestre SET 
+                UPDATE semestre SET 
                 data = :data
                 turma_id = :turma_id
                 WHERE id = :id

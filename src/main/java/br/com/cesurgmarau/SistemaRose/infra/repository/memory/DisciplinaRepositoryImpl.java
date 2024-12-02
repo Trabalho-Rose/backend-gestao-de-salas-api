@@ -39,7 +39,7 @@ public class DisciplinaRepositoryImpl implements DisciplinaRepository {
     @Override
     public String atualizarDisciplina(int id, Disciplina disciplina) {
         var query = """
-                UPDATE FROM disciplina SET 
+                UPDATE disciplina SET 
                 nome = :nome,
                 cargahoraria = :cargahoraria,
                 professor_id = :professor_id,

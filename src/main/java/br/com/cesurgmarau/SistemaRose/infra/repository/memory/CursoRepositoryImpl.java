@@ -37,7 +37,7 @@ public class CursoRepositoryImpl implements CursoRepository {
     @Override
     public String atualizarCurso(int id, Curso curso) {
         var query = """
-                UPDATE FROM curso SET 
+                UPDATE curso SET 
                 nome = :nome,
                 descricao = :descricao,
                 WHERE id = :id

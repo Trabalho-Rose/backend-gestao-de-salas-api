@@ -34,7 +34,7 @@ public class DiasDaSemanaRepositoryImpl implements DiasDaSemanaRepository {
     @Override
     public String atualizarDiasDaSemana(int id, DiasDaSemana diasDaSemana) {
         var query = """
-                UPDATE FROM diasdasemana SET 
+                UPDATE diasdasemana SET 
                 diatrabalhado = :diatrabalhado,
                 WHERE id = :id
                 """;

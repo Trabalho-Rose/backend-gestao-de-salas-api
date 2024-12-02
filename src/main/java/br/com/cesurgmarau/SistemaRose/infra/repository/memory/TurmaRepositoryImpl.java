@@ -35,7 +35,7 @@ public class TurmaRepositoryImpl implements TurmaRepository {
     @Override
     public String atualizarturma(int id, Turma turma) {
         var query = """
-                UPDATE FROM turma SET 
+                UPDATE turma SET 
                 nome = :nome,
                 qtdalunos = :qtdalunos,
                 curso_id = :curso_id,

@@ -39,7 +39,7 @@ public class SorteioRepositoryImpl implements SorteioRespository {
     @Override
     public String atualizarSorteio (int id, Sorteio sorteio) {
         var query = """
-                UPDATE FROM sorteio SET 
+                UPDATE sorteio SET 
                 id_curso = :id_curso,
                 id_sala = :id_sala,
                 id_professor = :id_professor,

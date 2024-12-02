@@ -35,7 +35,7 @@ public class SituacaoSalaRepositoryImpl implements SituacaoSalaRepository {
     @Override
     public String atualizarSituacaoSala(int id, SituacaoSala situacaoSala) {
         var query = """
-                UPDATE FROM situacaosala SET 
+                UPDATE situacaosala SET 
                 situacaosala = :situacaosala
                 WHERE id = :id
                 """;

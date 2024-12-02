@@ -34,7 +34,7 @@ public class ProfessorRepositoryImpl implements ProfessorRepository {
     @Override
     public String atualizarProfessor(int id, Professor professor) {
         var query = """
-                UPDATE FROM professor SET 
+                UPDATE professor SET 
                 nome = :nome,
                 diatrabalhado_id = :diatrabalhado_id
                 WHERE id = :id
