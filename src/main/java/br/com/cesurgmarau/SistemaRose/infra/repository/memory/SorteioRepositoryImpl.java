@@ -82,11 +82,11 @@ public class SorteioRepositoryImpl implements SorteioRespository {
     public List<ConsultaSorteio> listarSorteios () {
         var query = """
                     SELECT c.nome as curso, sa.nome as sala, p.nome as professor, d.nome as disciplina, t.nome as turma from sorteio s
-                    INNER JOIN sala sa on sa.id = s.id
-                    INNER JOIN curso c on c.id = s.id
-                    INNER JOIN professor p on p.id = s.id
-                    INNER JOIN turma t on t.id = s.id
-                    INNER JOIN disciplina d on d.id = s.id
+                    INNER JOIN sala sa on sa.id = s.id_sala
+                    INNER JOIN curso c on c.id = s.id_curso
+                    INNER JOIN professor p on p.id = s.id_professor
+                    INNER JOIN turma t on t.id = s.id_turma
+                    INNER JOIN disciplina d on d.id = s.id_disciplina
                     """;
 
         return (List<ConsultaSorteio>) entityManager.createNativeQuery(query, ConsultaSorteio.class).getResultList();

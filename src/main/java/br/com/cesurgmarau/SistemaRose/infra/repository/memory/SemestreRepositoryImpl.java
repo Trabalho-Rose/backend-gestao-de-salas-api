@@ -21,11 +21,12 @@ public class SemestreRepositoryImpl implements SemestreRepository {
         //INSERT INTO tabela VALUES ...
         //Named Parameters
         var query = """
-                INSERT INTO semestre (data)
-                VALUES (:data)
+                INSERT INTO semestre (data, turma_id)
+                VALUES (:data, :turma_id)
                 """;
         entityManager.createNativeQuery(query, Semestre.class)
                 .setParameter("data", semestre.getData())
+                .setParameter("turma_id", semestre.getTurma_id())
                 .executeUpdate();
     }
 
@@ -35,10 +36,12 @@ public class SemestreRepositoryImpl implements SemestreRepository {
         var query = """
                 UPDATE FROM semestre SET 
                 data = :data
+                turma_id = :turma_id
                 WHERE id = :id
                 """;
         entityManager.createNativeQuery(query, Semestre.class)
                 .setParameter("data", semestre.getData())
+                .setParameter("turma_id", semestre.getTurma_id())
                 .setParameter("id", id)
                 .executeUpdate();
         return "Semestre atualizado com sucesso!";

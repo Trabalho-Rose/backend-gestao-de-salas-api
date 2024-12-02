@@ -14,6 +14,17 @@ public class Semestre {
     @Column (name = "data")
     private String data;
 
+    @Column (name = "turma_id")
+    private int turma_id;
+
+    public int getTurma_id() {
+        return turma_id;
+    }
+
+    public void setTurma_id(int turma_id) {
+        this.turma_id = turma_id;
+    }
+
     public int getId() {
         return id;
     }
