@@ -2,6 +2,8 @@ package br.com.cesurgmarau.SistemaRose.core.domain.entity;
 
 public class ConsultaSorteio {
 
+    private int idSorteio;
+
     private String curso;
 
     private String sala;
@@ -11,6 +13,14 @@ public class ConsultaSorteio {
     private String disciplina;
 
     private String turma;
+
+    public int getIdSorteio() {
+        return idSorteio;
+    }
+
+    public void setIdSorteio(int idSorteio) {
+        this.idSorteio = idSorteio;
+    }
 
     public String getCurso() {
         return curso;

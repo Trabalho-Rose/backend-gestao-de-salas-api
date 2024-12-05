@@ -27,7 +27,7 @@ public class SorteioUseCaseImpl implements SorteioUseCase {
     }
 
     @Override
-    public Sorteio listarSorteioPorId (int id) {
+    public ConsultaSorteio listarSorteioPorId (int id) {
        return sorteioRespository.listarSorteioPorId(id);
     }
 

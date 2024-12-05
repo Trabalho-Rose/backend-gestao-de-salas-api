@@ -44,7 +44,7 @@ public class SorteioRepositoryImpl implements SorteioRespository {
                 id_sala = :id_sala,
                 id_professor = :id_professor,
                 id_disciplina = :id_disciplina,
-                id_turma = :id_turma,
+                id_turma = :id_turma
                 WHERE id = :id
                 """;
         entityManager.createNativeQuery(query, SituacaoSala.class)
@@ -66,6 +66,26 @@ public class SorteioRepositoryImpl implements SorteioRespository {
                 """;
 
         entityManager.createNativeQuery(query, Sorteio.class).executeUpdate();
+
+        var query2 = """
+                CREATE TABLE sorteio (
+                 id serial PRIMARY KEY,
+                 id_curso INTEGER not null,
+                 id_sala INTEGER not null,
+                 id_professor INTEGER not null,
+                 id_disciplina INTEGER not null,
+                 id_turma INTEGER not null,
+                                
+                  FOREIGN KEY (id_sala) REFERENCES sala (id),
+                  FOREIGN KEY (id_curso) REFERENCES curso (id),
+                  FOREIGN KEY (id_professor) REFERENCES professor (id),
+                  FOREIGN KEY (id_turma) REFERENCES turma (id),
+                  FOREIGN KEY (id_disciplina) REFERENCES disciplina (id)
+                );
+                """;
+
+        entityManager.createNativeQuery(query2)
+                .executeUpdate();
         return "Todos os relatórios foram deletados!";
     }
 
@@ -81,7 +101,7 @@ public class SorteioRepositoryImpl implements SorteioRespository {
     @Override
     public List<ConsultaSorteio> listarSorteios () {
         var query = """
-                    SELECT c.nome as curso, sa.nome as sala, p.nome as professor, d.nome as disciplina, t.nome as turma from sorteio s
+                    SELECT s.id AS idSorteio c.nome as curso, sa.nome as sala, p.nome as professor, d.nome as disciplina, t.nome as turma from sorteio s
                     INNER JOIN sala sa on sa.id = s.id_sala
                     INNER JOIN curso c on c.id = s.id_curso
                     INNER JOIN professor p on p.id = s.id_professor
@@ -93,10 +113,18 @@ public class SorteioRepositoryImpl implements SorteioRespository {
     }
 
     @Override
-    public Sorteio listarSorteioPorId (int id) {
-        var query = "SELECT * FROM sorteio WHERE id = :id";
+    public ConsultaSorteio listarSorteioPorId (int id) {
+        var query = """
+                SELECT s.id AS idSorteio c.nome as curso, sa.nome as sala, p.nome as professor, d.nome as disciplina, t.nome as turma from sorteio s\n" +
+                INNER JOIN sala sa on sa.id = s.id_sala
+                INNER JOIN curso c on c.id = s.id_curso
+                INNER JOIN professor p on p.id = s.id_professor
+                INNER JOIN turma t on t.id = s.id_turma
+                INNER JOIN disciplina d on d.id = s.id_disciplina
+                WHERE s.id = :id;
+                """;
 
-        return (Sorteio) entityManager.createNativeQuery(query, Sorteio.class)
+        return (ConsultaSorteio) entityManager.createNativeQuery(query, ConsultaSorteio.class)
                 .setParameter("id", id)
                 .getSingleResult();
     }

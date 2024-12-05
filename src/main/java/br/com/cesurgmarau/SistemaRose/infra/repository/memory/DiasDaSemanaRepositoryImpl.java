@@ -35,7 +35,7 @@ public class DiasDaSemanaRepositoryImpl implements DiasDaSemanaRepository {
     public String atualizarDiasDaSemana(int id, DiasDaSemana diasDaSemana) {
         var query = """
                 UPDATE diasdasemana SET 
-                diatrabalhado = :diatrabalhado,
+                diatrabalhado = :diatrabalhado
                 WHERE id = :id
                 """;
         entityManager.createNativeQuery(query, Curso.class)

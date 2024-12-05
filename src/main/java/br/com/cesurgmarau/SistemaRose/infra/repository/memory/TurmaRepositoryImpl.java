@@ -38,7 +38,7 @@ public class TurmaRepositoryImpl implements TurmaRepository {
                 UPDATE turma SET 
                 nome = :nome,
                 qtdalunos = :qtdalunos,
-                curso_id = :curso_id,
+                curso_id = :curso_id
                 WHERE id = :id
                 """;
         entityManager.createNativeQuery(query, Turma.class)

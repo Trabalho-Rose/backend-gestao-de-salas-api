@@ -39,7 +39,7 @@ public class CursoRepositoryImpl implements CursoRepository {
         var query = """
                 UPDATE curso SET 
                 nome = :nome,
-                descricao = :descricao,
+                descricao = :descricao
                 WHERE id = :id
                 """;
         entityManager.createNativeQuery(query, Curso.class)

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController //denomina o local do controller para o meio externo
 public class CursoController {
 //realiza a comunicação de rotas (protocolo HTTP - conexão com API)

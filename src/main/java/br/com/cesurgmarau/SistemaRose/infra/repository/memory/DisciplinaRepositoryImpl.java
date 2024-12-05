@@ -42,7 +42,7 @@ public class DisciplinaRepositoryImpl implements DisciplinaRepository {
                 UPDATE disciplina SET 
                 nome = :nome,
                 cargahoraria = :cargahoraria,
-                professor_id = :professor_id,
+                professor_id = :professor_id
                 WHERE id = :id
                 """;
         entityManager.createNativeQuery(query, Disciplina.class)
@@ -100,6 +100,4 @@ return (List<Disciplina>) entityManager.createNativeQuery(query, Disciplina.clas
                 """;
             return (List<Relatorio>) entityManager.createNativeQuery(query, Relatorio.class).getResultList();
         }
-
-
 }

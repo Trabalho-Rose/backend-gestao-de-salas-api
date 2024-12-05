@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 public class SorteioController {
 
@@ -43,9 +44,9 @@ public class SorteioController {
 
     // Método GET para listar um sorteio por ID
     @GetMapping("/sorteio/{id}")
-    public ResponseEntity<Sorteio> listarSorteioPorId(@PathVariable int id) {
+    public ResponseEntity<ConsultaSorteio> listarSorteioPorId(@PathVariable int id) {
         try {
-            Sorteio sorteio = sorteioUseCase.listarSorteioPorId(id);
+            ConsultaSorteio sorteio = sorteioUseCase.listarSorteioPorId(id);
             if (sorteio == null) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null); // Retorna 404 Not Found se não encontrar o sorteio
             }
