@@ -17,8 +17,8 @@ public class Sala {
     @Column (name = "capacidade")
     private int capacidade;
 
-    @Column (name = "situacaoDeSala")
-    private int situacaoDeSala;
+    @Column (name = "situacaodesala")
+    private String situacaoDeSala;
 
     public int getId() {
         return id;
@@ -44,11 +44,11 @@ public class Sala {
         this.capacidade = capacidade;
     }
 
-    public int getSituacaoDeSala() {
+    public String getSituacaoDeSala() {
         return situacaoDeSala;
     }
 
-    public void getSituacaoDeSala(int situacaoDeSala) {
+    public void getSituacaoDeSala(String situacaoDeSala) {
         this.situacaoDeSala = situacaoDeSala;
     }
 }

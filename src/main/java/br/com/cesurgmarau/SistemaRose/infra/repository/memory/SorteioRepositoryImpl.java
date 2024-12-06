@@ -100,7 +100,7 @@ public class SorteioRepositoryImpl implements SorteioRespository {
     @Override
     public List<ConsultaSorteio> listarSorteios () {
         var query = """
-                    SELECT s.id AS idSorteio c.nome as curso, sa.nome as sala, p.nome as professor, d.nome as disciplina, t.nome as turma from sorteio s
+                    SELECT s.id AS idSorteio, c.nome as curso, sa.nome as sala, p.nome as professor, d.nome as disciplina, t.nome as turma from sorteio s
                     INNER JOIN sala sa on sa.id = s.id_sala
                     INNER JOIN curso c on c.id = s.id_curso
                     INNER JOIN professor p on p.id = s.id_professor

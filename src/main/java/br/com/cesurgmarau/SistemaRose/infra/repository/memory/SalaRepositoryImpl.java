@@ -22,13 +22,13 @@ public class SalaRepositoryImpl implements SalaRepository {
         //INSERT INTO tabela VALUES ...
         //Named Parameters
         var query = """
-                INSERT INTO sala (nome, capacidade, situacaoDeSala)
-                VALUES (:nome, :capacidade, :situacaoDeSala)
+                INSERT INTO sala (nome, capacidade, situacaodesala)
+                VALUES (:nome, :capacidade, :situacaodesala)
                 """;
         entityManager.createNativeQuery(query, Sala.class)
                 .setParameter("nome", sala.getNome())
                 .setParameter("capacidade", sala.getCapacidade())
-                .setParameter("situacaoDeSala", sala.getSituacaoDeSala())
+                .setParameter("situacaodesala", sala.getSituacaoDeSala())
                 .executeUpdate();
     }
 
@@ -39,13 +39,13 @@ public class SalaRepositoryImpl implements SalaRepository {
                 UPDATE sala SET 
                 nome = :nome,
                 capacidade = :capacidade,
-                situacaoDeSala = :situacaoDeSala
+                situacaodesala = :situacaodesala
                 WHERE id = :id
                 """;
         entityManager.createNativeQuery(query, Semestre.class)
                 .setParameter("nome", sala.getNome())
                 .setParameter("capacidade", sala.getCapacidade())
-                .setParameter("situacaosala_id", sala.getSituacaoDeSala())
+                .setParameter("situacaodesala", sala.getSituacaoDeSala())
                 .setParameter("id", id)
                 .executeUpdate();
         return "Sala atualizada com sucesso!";
@@ -64,7 +64,8 @@ public class SalaRepositoryImpl implements SalaRepository {
     public List<Sala> listar() {
         var query = "SELECT * FROM sala";
 
-        return (List<Sala>) entityManager.createNativeQuery(query, Sala.class).getResultList();
+        return (List<Sala>) entityManager.createNativeQuery(query, Sala.class)
+                .getResultList();
     }
 
     @Override
