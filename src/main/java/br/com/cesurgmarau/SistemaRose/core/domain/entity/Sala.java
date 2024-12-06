@@ -17,8 +17,8 @@ public class Sala {
     @Column (name = "capacidade")
     private int capacidade;
 
-    @Column (name = "situacaosala_id")
-    private int situacaoSala_id;
+    @Column (name = "situacaoDeSala")
+    private int situacaoDeSala;
 
     public int getId() {
         return id;
@@ -44,11 +44,11 @@ public class Sala {
         this.capacidade = capacidade;
     }
 
-    public int getSituacaoSala_id() {
-        return situacaoSala_id;
+    public int getSituacaoDeSala() {
+        return situacaoDeSala;
     }
 
-    public void setSituacaoSala_id(int situacaoSala_id) {
-        this.situacaoSala_id = situacaoSala_id;
+    public void getSituacaoDeSala(int situacaoDeSala) {
+        this.situacaoDeSala = situacaoDeSala;
     }
 }

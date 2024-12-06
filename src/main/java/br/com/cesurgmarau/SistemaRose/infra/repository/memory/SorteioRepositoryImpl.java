@@ -2,7 +2,6 @@ package br.com.cesurgmarau.SistemaRose.infra.repository.memory;
 
 import br.com.cesurgmarau.SistemaRose.core.domain.contract.SorteioRespository;
 import br.com.cesurgmarau.SistemaRose.core.domain.entity.ConsultaSorteio;
-import br.com.cesurgmarau.SistemaRose.core.domain.entity.SituacaoSala;
 import br.com.cesurgmarau.SistemaRose.core.domain.entity.Sorteio;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -47,7 +46,7 @@ public class SorteioRepositoryImpl implements SorteioRespository {
                 id_turma = :id_turma
                 WHERE id = :id
                 """;
-        entityManager.createNativeQuery(query, SituacaoSala.class)
+        entityManager.createNativeQuery(query, Sorteio.class)
                 .setParameter("id_curso", sorteio.getId_curso())
                 .setParameter("id_sala", sorteio.getId_sala())
                 .setParameter("id_professor", sorteio.getId_professor())

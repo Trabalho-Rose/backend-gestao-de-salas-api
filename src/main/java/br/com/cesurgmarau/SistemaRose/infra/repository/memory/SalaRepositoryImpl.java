@@ -28,7 +28,7 @@ public class SalaRepositoryImpl implements SalaRepository {
         entityManager.createNativeQuery(query, Sala.class)
                 .setParameter("nome", sala.getNome())
                 .setParameter("capacidade", sala.getCapacidade())
-                .setParameter("situacaosala_id", sala.getSituacaoSala_id())
+                .setParameter("situacaosala_id", sala.getSituacaoDeSala())
                 .executeUpdate();
     }
 
@@ -39,13 +39,13 @@ public class SalaRepositoryImpl implements SalaRepository {
                 UPDATE sala SET 
                 nome = :nome,
                 capacidade = :capacidade,
-                situacaosala_id = :situacaosala_id
+                situacaoDeSala = :situacaoDeSala
                 WHERE id = :id
                 """;
         entityManager.createNativeQuery(query, Semestre.class)
                 .setParameter("nome", sala.getNome())
                 .setParameter("capacidade", sala.getCapacidade())
-                .setParameter("situacaosala_id", sala.getSituacaoSala_id())
+                .setParameter("situacaosala_id", sala.getSituacaoDeSala())
                 .setParameter("id", id)
                 .executeUpdate();
         return "Sala atualizada com sucesso!";
