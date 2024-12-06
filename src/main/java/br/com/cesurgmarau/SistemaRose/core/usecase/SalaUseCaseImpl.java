@@ -27,8 +27,8 @@ public class SalaUseCaseImpl implements SalaUseCase {
     }
 
     @Override
-    public void adicionarSala (Sala sala) {
-        salaRepository.adicionarSala(sala);
+    public String adicionarSala (Sala sala) {
+        return salaRepository.adicionarSala(sala);
     }
 
     @Override

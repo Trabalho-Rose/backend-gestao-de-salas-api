@@ -9,7 +9,7 @@ public interface SalaUseCase {
 
     public List<Sala> listar ();
     public Sala listarPorId (int id);
-    public void adicionarSala (Sala sala);
+    public String adicionarSala (Sala sala);
     public String deletarSala (int id);
     public String atualizarSala (int id, Sala sala);
 

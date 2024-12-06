@@ -44,16 +44,8 @@ public class SorteioController {
 
     // Método GET para listar um sorteio por ID
     @GetMapping("/sorteio/{id}")
-    public ResponseEntity<ConsultaSorteio> listarSorteioPorId(@PathVariable int id) {
-        try {
-            ConsultaSorteio sorteio = sorteioUseCase.listarSorteioPorId(id);
-            if (sorteio == null) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null); // Retorna 404 Not Found se não encontrar o sorteio
-            }
-            return ResponseEntity.ok(sorteio); // Retorna 200 OK com o sorteio encontrado
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null); // Retorna 500 em caso de erro
-        }
+    public ConsultaSorteio listarSorteioPorId(@PathVariable int id) {
+        return sorteioUseCase.listarSorteioPorId(id);
     }
 
     // Método PUT para atualizar um sorteio por ID

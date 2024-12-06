@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface SorteioRespository {
 
-    public void adicionarSorteio (Sorteio sorteio);
+    public String adicionarSorteio (Sorteio sorteio);
     public List<ConsultaSorteio> listarSorteios ();
     public ConsultaSorteio listarSorteioPorId (int id);
     public String atualizarSorteio (int id, Sorteio sorteio);

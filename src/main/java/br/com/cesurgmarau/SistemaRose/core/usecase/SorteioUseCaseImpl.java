@@ -17,8 +17,8 @@ public class SorteioUseCaseImpl implements SorteioUseCase {
    private Sorteio sorteio;
 
    @Override
-    public void adicionarSorteio (Sorteio sorteio) {
-        sorteioRespository.adicionarSorteio(sorteio);
+    public String adicionarSorteio (Sorteio sorteio) {
+        return sorteioRespository.adicionarSorteio(sorteio);
     }
 
     @Override

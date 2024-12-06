@@ -18,7 +18,7 @@ public class SalaRepositoryImpl implements SalaRepository {
 
     @Transactional
     @Override
-    public void adicionarSala(Sala sala) {
+    public String adicionarSala(Sala sala) {
         //INSERT INTO tabela VALUES ...
         //Named Parameters
         var query = """
@@ -30,6 +30,8 @@ public class SalaRepositoryImpl implements SalaRepository {
                 .setParameter("capacidade", sala.getCapacidade())
                 .setParameter("situacaodesala", sala.getSituacaoDeSala())
                 .executeUpdate();
+
+        return "Sala adicionada com sucesso!";
     }
 
     @Transactional

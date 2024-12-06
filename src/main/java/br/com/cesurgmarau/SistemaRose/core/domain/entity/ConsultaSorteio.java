@@ -2,7 +2,7 @@ package br.com.cesurgmarau.SistemaRose.core.domain.entity;
 
 public class ConsultaSorteio {
 
-    private int idSorteio;
+    private int id_sorteio;
 
     private String curso;
 
@@ -14,12 +14,12 @@ public class ConsultaSorteio {
 
     private String turma;
 
-    public int getIdSorteio() {
-        return idSorteio;
+    public int getId_Sorteio() {
+        return id_sorteio;
     }
 
-    public void setIdSorteio(int idSorteio) {
-        this.idSorteio = idSorteio;
+    public void setId_Sorteio(int id_sorteio) {
+        this.id_sorteio = id_sorteio;
     }
 
     public String getCurso() {
@@ -62,7 +62,8 @@ public class ConsultaSorteio {
         this.turma = turma;
     }
 
-    public ConsultaSorteio (String curso, String sala, String professor, String disciplina, String turma) {
+    public ConsultaSorteio (int id_sorteio, String curso, String sala, String professor, String disciplina, String turma) {
+        this.id_sorteio = id_sorteio;
         this.curso = curso;
         this.sala = sala;
         this.professor = professor;

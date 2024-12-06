@@ -48,7 +48,7 @@ public class Sala {
         return situacaoDeSala;
     }
 
-    public void getSituacaoDeSala(String situacaoDeSala) {
+    public void setSituacaoDeSala(String situacaoDeSala) {
         this.situacaoDeSala = situacaoDeSala;
     }
 }

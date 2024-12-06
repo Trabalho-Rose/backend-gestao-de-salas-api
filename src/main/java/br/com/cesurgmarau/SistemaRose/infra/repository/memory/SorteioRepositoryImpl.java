@@ -18,7 +18,7 @@ public class SorteioRepositoryImpl implements SorteioRespository {
 
     @Transactional
     @Override
-    public void adicionarSorteio (Sorteio sorteio) {
+    public String adicionarSorteio (Sorteio sorteio) {
         //INSERT INTO tabela VALUES ...
         //Named Parameters
         var query = """
@@ -32,6 +32,8 @@ public class SorteioRepositoryImpl implements SorteioRespository {
                 .setParameter("id_disciplina", sorteio.getId_disciplina())
                 .setParameter("id_turma", sorteio.getId_turma())
                 .executeUpdate();
+
+        return "Sorteio adicionado com sucesso!";
     }
 
     @Transactional
@@ -100,7 +102,7 @@ public class SorteioRepositoryImpl implements SorteioRespository {
     @Override
     public List<ConsultaSorteio> listarSorteios () {
         var query = """
-                    SELECT s.id AS idSorteio, c.nome as curso, sa.nome as sala, p.nome as professor, d.nome as disciplina, t.nome as turma from sorteio s
+                    SELECT s.id AS id_sorteio, c.nome as curso, sa.nome as sala, p.nome as professor, d.nome as disciplina, t.nome as turma from sorteio s
                     INNER JOIN sala sa on sa.id = s.id_sala
                     INNER JOIN curso c on c.id = s.id_curso
                     INNER JOIN professor p on p.id = s.id_professor
@@ -114,17 +116,17 @@ public class SorteioRepositoryImpl implements SorteioRespository {
     @Override
     public ConsultaSorteio listarSorteioPorId (int id) {
         var query = """
-                SELECT s.id AS idSorteio c.nome as curso, sa.nome as sala, p.nome as professor, d.nome as disciplina, t.nome as turma from sorteio s\n" +
+                SELECT s.id AS id_sorteio, c.nome as curso, sa.nome as sala, p.nome as professor, d.nome as disciplina, t.nome as turma from sorteio s
                 INNER JOIN sala sa on sa.id = s.id_sala
                 INNER JOIN curso c on c.id = s.id_curso
                 INNER JOIN professor p on p.id = s.id_professor
                 INNER JOIN turma t on t.id = s.id_turma
                 INNER JOIN disciplina d on d.id = s.id_disciplina
-                WHERE s.id = :id;
+                WHERE s.id = :s.id;
                 """;
 
         return (ConsultaSorteio) entityManager.createNativeQuery(query, ConsultaSorteio.class)
-                .setParameter("id", id)
+                .setParameter("s.id", id)
                 .getSingleResult();
     }
 }
