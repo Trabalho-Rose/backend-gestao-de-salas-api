@@ -22,13 +22,13 @@ public class SalaRepositoryImpl implements SalaRepository {
         //INSERT INTO tabela VALUES ...
         //Named Parameters
         var query = """
-                INSERT INTO sala (nome, capacidade, situacaosala_id)
-                VALUES (:nome, :capacidade, :situacaosala_id)
+                INSERT INTO sala (nome, capacidade, situacaoDeSala)
+                VALUES (:nome, :capacidade, :situacaoDeSala)
                 """;
         entityManager.createNativeQuery(query, Sala.class)
                 .setParameter("nome", sala.getNome())
                 .setParameter("capacidade", sala.getCapacidade())
-                .setParameter("situacaosala_id", sala.getSituacaoDeSala())
+                .setParameter("situacaoDeSala", sala.getSituacaoDeSala())
                 .executeUpdate();
     }
 
